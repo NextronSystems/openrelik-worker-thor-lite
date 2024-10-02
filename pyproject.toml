@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "openrelik-worker-template"
+version = "2024.09.23"
+description = "Description of the worker"
+authors = ["YOUR NAME <email@example.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.10"
+celery = {extras = ["redis"], version = "^5.4.0"}
+openrelik-worker-common = "^2024.9.23"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
