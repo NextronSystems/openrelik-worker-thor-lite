@@ -1,6 +1,10 @@
 # Use the official Docker Hub Ubuntu base image
 FROM ubuntu:24.04
 
+LABEL org.opencontainers.image.version="2024.10.07"
+LABEL org.opencontainers.image.title="OpenRelik Worker for THOR Lite"
+LABEL org.opencontainers.image.source="https://github.com/NextronSystems/openrelik-worker-thor-lite"
+
 # Prevent needing to configure debian packages, stopping the setup of
 # the docker container.
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -8,8 +12,20 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 # Install poetry and any other dependency that your worker needs.
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-poetry \
+    curl \
+    unzip \
     # Add your dependencies here
     && rm -rf /var/lib/apt/lists/*
+
+# ----------------------------------------------------------------------
+# Install THOR Lite
+# ----------------------------------------------------------------------
+WORKDIR /thor-lite
+RUN curl -o thorlite-linux.zip "https://update1.nextron-systems.com/getupdate.php?product=thor10lite-linux&dev=1" \
+    && unzip thorlite-linux.zip \
+    && rm thorlite-linux.zip \
+    && chmod +x thor-lite-linux-64
+# ----------------------------------------------------------------------
 
 # Configure poetry
 ENV POETRY_NO_INTERACTION=1 \

@@ -1,8 +1,11 @@
 [tool.poetry]
-name = "openrelik-worker-template"
-version = "2024.09.23"
-description = "Description of the worker"
-authors = ["YOUR NAME <email@example.com>"]
+name = "openrelik-worker-thor-lite"
+version = "2024.10.07"
+description = "Scanner for attacker tools and activity"
+authors = [
+  "Johan Berggren <jberggren@gmail.com>",
+  "gremat <50012463+gremat@users.noreply.github.com>"
+]
 readme = "README.md"
 package-mode = false
 
