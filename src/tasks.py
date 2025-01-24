@@ -7,10 +7,11 @@ from tempfile import TemporaryDirectory
 from typing import Final
 
 from celery.utils.log import get_task_logger
-from openrelik_worker_common.utils import (
-    create_output_file,
+
+from openrelik_worker_common.file_utils import create_output_file
+from openrelik_worker_common.task_utils import (
+    create_task_result,
     get_input_files,
-    task_result,
 )
 
 from .app import celery
@@ -36,7 +37,7 @@ def thor(  # pylint: disable=too-many-arguments
     output_path: str | None = None,
     workflow_id: str | None = None,
     task_config: dict | None = None,  # pylint: disable=unused-argument
-    ) -> str:
+) -> str:
     """Run Thor Lite on input files.
 
     Args:
@@ -57,22 +58,19 @@ def thor(  # pylint: disable=too-many-arguments
     # Create output files
     html_output = create_output_file(
         output_path,
-        filename="Thor_Lite_HTML_report",
-        file_extension="html",
+        display_name="Thor_Lite_HTML_report.html",
         data_type="openrelik:worker:thor-lite:html_report",
     )
 
     json_log = create_output_file(
         output_path,
-        filename="Thor_Lite_JSON_log",
-        file_extension="json",
+        display_name="Thor_Lite_JSON_log.json",
         data_type="openrelik:worker:thor-lite:json_log",
     )
 
     txt_log = create_output_file(
         output_path,
-        filename="Thor_Lite_TXT_log",
-        file_extension="txt",
+        display_name="Thor_Lite_TXT_log.txt",
         data_type="openrelik:worker:thor-lite:txt_log",
     )
 
@@ -126,7 +124,7 @@ def thor(  # pylint: disable=too-many-arguments
         if os.stat(output_file.path).st_size > 0:
             output_files.append(output_file.to_dict())
 
-    return task_result(
+    return create_task_result(
         output_files=output_files,
         workflow_id=workflow_id,
         command=" ".join(command),

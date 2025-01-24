@@ -10,7 +10,7 @@ You need a valid THOR Lite license to use this worker. You can get a free licens
 
 > **Warning:** OpenRelik is a fresh project and things are changing rapidly. Thus this worker is considered _experimental_. Use with care!
 
-> Note: Last tested with OpenRelik 2024.09.23 . Use `2024.09.23` as the version in your `config.env` file (OpenRelik core system and worker versions).
+> Note: Last tested with OpenRelik `2024.12.12`. Use `2024.12.12` in your `config.env` file for all versions in the block of the OpenRelik core system (and `2024.11.27` in the worker block).
 
 Add this to your `docker-compose.yml` file:
 ```yaml
@@ -28,4 +28,4 @@ Add this to your `docker-compose.yml` file:
     command: "celery --app=src.app worker --task-events --concurrency=2 --loglevel=INFO -Q openrelik-worker-thor-lite"
 ```
 
-> Note: Currently (as of 2024-10-07), you need to add `openrelik:worker:thor-lite:html_report` to `[ui] allowed_data_types_preview` in your `settings.toml` to get embedded previews of the HTML reports that the worker generates.
+> Note: Currently (as of 2025-01-24), you need to add `openrelik:worker:thor-lite:html_report` to `[ui] allowed_data_types_preview` in your `settings.toml` to get embedded previews of the HTML reports that the worker generates.

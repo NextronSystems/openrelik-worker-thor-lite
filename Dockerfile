@@ -1,7 +1,7 @@
 # Use the official Docker Hub Ubuntu base image
 FROM ubuntu:24.04
 
-LABEL org.opencontainers.image.version="2024.10.07"
+LABEL org.opencontainers.image.version="2025.01.24"
 LABEL org.opencontainers.image.title="OpenRelik Worker for THOR Lite"
 LABEL org.opencontainers.image.source="https://github.com/NextronSystems/openrelik-worker-thor-lite"
 
