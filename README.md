@@ -2,6 +2,8 @@
 
 This worker uses [THOR Lite](https://www.nextron-systems.com/thor-lite/) from [Nextron Systems](https://nextron-systems.com/) to scan files and directories for malicious content.
 
+![OpenRelik THOR Lite Worker Artifacts](img/openrelik-worker-thor-lite-artifacts.png?raw=true)
+
 ## Prerequisites
 
 You need a valid THOR Lite license to use this worker. You can get a free license for non-commercial use from the [Nextron Systems website](https://www.nextron-systems.com/thor-lite/#get-thor).
@@ -28,4 +30,8 @@ Add this to your `docker-compose.yml` file:
     command: "celery --app=src.app worker --task-events --concurrency=2 --loglevel=INFO -Q openrelik-worker-thor-lite"
 ```
 
+### HTML Report Preview
+
 > Note: Currently (as of 2025-01-24), you need to add `openrelik:worker:thor-lite:html_report` to `[ui] allowed_data_types_preview` in your `settings.toml` to get embedded previews of the HTML reports that the worker generates.
+
+![OpenRelik THOR Lite Worker HTML Report](img/openrelik-worker-thor-lite-html-report.png?raw=true)
