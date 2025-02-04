@@ -30,6 +30,14 @@ Add this to your `docker-compose.yml` file:
     command: "celery --app=src.app worker --task-events --concurrency=2 --loglevel=INFO -Q openrelik-worker-thor-lite"
 ```
 
+To get your THOR Lite license file as a base64-encoded string in one line (on macOS or Linux), you can do:
+
+```bash
+cat thor-lite-56fe90b8-3c3864bb-20230131-20240208.lic | base64
+```
+
+Then copy the output and paste it into the THOR_LICENSE environment variable in your docker-compose.yml file.
+
 ### HTML Report Preview
 
 > Note: Currently (as of 2025-01-24), you need to add `openrelik:worker:thor-lite:html_report` to `[ui] allowed_data_types_preview` in your `settings.toml` to get embedded previews of the HTML reports that the worker generates.
