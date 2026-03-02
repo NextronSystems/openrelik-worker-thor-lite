@@ -1,0 +1,6 @@
+# Showcase this worker on https://openrelik.org/marketplace
+publish: true
+
+# Worker Metadata. This section is required.
+display_name: Thor Lite
+description: Scanner for attacker tools and activity
