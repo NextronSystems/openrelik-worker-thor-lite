@@ -10,9 +10,7 @@ You need a valid THOR Lite license to use this worker. You can get a free licens
 
 ## Installation Instructions
 
-> **Warning:** OpenRelik is a fresh project and things are changing rapidly. Thus this worker is considered _experimental_. Use with care!
-
-> Note: Last tested with OpenRelik `2024.12.12`. Use `2024.12.12` in your `config.env` file for all versions in the block of the OpenRelik core system (and `2024.11.27` in the worker block).
+> Note: Last tested with OpenRelik `0.6.0`. Use `0.6.0` in your `config.env` file for all versions in the block of the OpenRelik core system.
 
 Add this to your `docker-compose.yml` file:
 ```yaml
@@ -30,8 +28,18 @@ Add this to your `docker-compose.yml` file:
     command: "celery --app=src.app worker --task-events --concurrency=2 --loglevel=INFO -Q openrelik-worker-thor-lite"
 ```
 
+### License
+
+To get your THOR Lite license file as a base64-encoded string in one line (on macOS or Linux), you can do:
+
+```bash
+cat thor-lite-56fe90b8-3c3864bb-20230131-20240208.lic | base64
+```
+
+Then copy the output and paste it into the `THOR_LICENSE` environment variable in your `docker-compose.yml` file.
+
 ### HTML Report Preview
 
-> Note: Currently (as of 2025-01-24), you need to add `openrelik:worker:thor-lite:html_report` to `[ui] allowed_data_types_preview` in your `settings.toml` to get embedded previews of the HTML reports that the worker generates.
+> Note: You need to add `openrelik:worker:thor-lite:html_report` to `[ui] allowed_data_types_preview` in your `settings.toml` to get embedded previews of the HTML reports that the worker generates.
 
 ![OpenRelik THOR Lite Worker HTML Report](img/openrelik-worker-thor-lite-html-report.png?raw=true)

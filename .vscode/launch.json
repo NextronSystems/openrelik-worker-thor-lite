@@ -1,0 +1,21 @@
+{
+    "version": "0.1.0",
+    "configurations": [
+        {
+            "type": "debugpy",
+            "request": "attach",
+            "name": "OpenRelik Worker",
+            "connect": {
+                "host": "127.0.0.1",
+                "port": 5678
+            },
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}",
+                    "remoteRoot": "/openrelik"
+                }
+            ],
+            "justMyCode": false
+        },
+    ]
+}
