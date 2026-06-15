@@ -2,11 +2,11 @@
 authors = [
     {name = "gremat", email = "50012463+gremat@users.noreply.github.com"},
 ]
-requires-python = "<4.0,>=3.11"
+requires-python = "<4.0,>=3.12"
 dependencies = [
     "celery[redis]<6.0.0,>=5.4.0",
     "openrelik-common>=0.7.5",
-    "openrelik-worker-common>=0.17.0",
+    "openrelik-worker-common>=0.17.3",
 ]
 name = "openrelik-worker-thor-lite"
 version = "0.2.0"

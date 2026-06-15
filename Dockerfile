@@ -12,8 +12,13 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 # Install poetry and any other dependency that your worker needs.
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
-    # Add your dependencies here
     ca-certificates \
+    sudo \
+    fdisk \
+    qemu-utils \
+    ntfs-3g \
+    ewf-tools \
+    btrfs-progs \
     unzip \
     && rm -rf /var/lib/apt/lists/*
 

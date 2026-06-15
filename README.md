@@ -4,9 +4,19 @@ This worker uses [THOR Lite](https://www.nextron-systems.com/thor-lite/) from [N
 
 ![OpenRelik THOR Lite Worker Artifacts](img/openrelik-worker-thor-lite-artifacts.png?raw=true)
 
+## Overview
+
+This worker scans regular file and folder inputs with THOR Lite. It can also
+mount supported disk image inputs and scan the filesystems inside them when the
+`mount_disk_images` task option is enabled.
+
 ## Prerequisites
 
 You need a valid THOR Lite license to use this worker. You can get a free license for non-commercial use from the [Nextron Systems website](https://www.nextron-systems.com/thor-lite/#get-thor).
+
+**Note on Privileges:** Mounting disk images requires `privileged` mode and the
+`/dev/` volume mapped into the worker container. Be aware of the security
+implications before enabling these Docker privileges.
 
 ## Installation Instructions
 
@@ -17,6 +27,7 @@ Add this to your `docker-compose.yml` file:
   openrelik-worker-thor-lite:
     container_name: openrelik-worker-thor-lite
     image: ghcr.io/nextronsystems/openrelik-worker-thor-lite:latest
+    privileged: true
     restart: always
     environment:
       - REDIS_URL=redis://openrelik-redis:6379
@@ -25,6 +36,7 @@ Add this to your `docker-compose.yml` file:
       - THOR_LICENSE=<your license key, base64 encoded>
     volumes:
       - ./data:/usr/share/openrelik/data
+      - /dev:/dev
     command: "celery --app=src.app worker --task-events --concurrency=2 --loglevel=INFO -Q openrelik-worker-thor-lite"
 ```
 
