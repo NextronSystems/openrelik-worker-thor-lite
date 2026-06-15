@@ -87,7 +87,7 @@ def _path_values(thor_command):
 def test_task_metadata_exposes_mount_disk_images_option():
     config_names = {item["name"] for item in TASK_METADATA["task_config"]}
 
-    assert "mount_disk_images" in config_names
+    assert config_names == {"mount_disk_images"}
 
 
 def test_command_scans_regular_inputs_from_temp_directory(tmp_path):

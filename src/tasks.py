@@ -26,13 +26,6 @@ TASK_METADATA = {
     # by the user will be available to the task function when executing (task_config).
     "task_config": [
         {
-            "name": "Thor Lite",
-            "label": "ThorLite",
-            "description": "Scanner for attacker tools and activity",
-            "type": "text",  # Types supported: text, textarea, checkbox
-            "required": False,
-        },
-        {
             "name": "mount_disk_images",
             "label": "Mount disk images",
             "description": (
